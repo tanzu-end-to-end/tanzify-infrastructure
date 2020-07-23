@@ -1,0 +1,100 @@
+product-name: cf
+network-properties:
+  network:
+    name: pas
+  other_availability_zones:
+  - name: Availability Sets
+  singleton_availability_zone:
+    name: Availability Sets
+product-properties:
+  .cloud_controller.apps_domain:
+    value: ((apps_dns_domain))
+  .cloud_controller.system_domain:
+    value: ((sys_dns_domain))
+  .mysql_monitor.recipient_email:
+    value: example@example.com
+  .nfs_server.blobstore_internal_access_rules:
+    value: allow 10.0.0.0/8;,allow 172.16.0.0/12;,allow 192.168.0.0/16;
+  .properties.cf_networking_search_domains:
+    value: apps.internal
+  .properties.credhub_internal_provider_keys:
+    value:
+    - key:
+        secret: 1a2b3c4d5e6f7g8h9i0j
+      name: Key
+      primary: true
+  .properties.haproxy_forward_tls:
+    value: disable
+  .ha_proxy.skip_cert_verify:
+    value: true
+  .properties.networking_poe_ssl_certs:
+    value:
+    - certificate:
+        cert_pem: |
+          ((ssl_certificate))
+        private_key_pem: |
+          ((ssl_private_key))
+      name: Certificate
+  .properties.system_blobstore:
+    selected_option: external_azure
+    value: external_azure
+  .properties.security_acknowledgement:
+    value: X
+  .properties.system_blobstore.external_azure.access_key:
+    value:
+      secret: ((pas_storage_account_access_key))
+  .properties.system_blobstore.external_azure.account_name:
+    value: ((pas_storage_account_name))
+  .properties.system_blobstore.external_azure.buildpacks_container:
+    value: ((pas_buildpacks_container_name))
+  .properties.system_blobstore.external_azure.droplets_container:
+    value: ((pas_droplets_container_name))
+  .properties.system_blobstore.external_azure.enable_bbr:
+    value: true
+  .properties.system_blobstore.external_azure.environment:
+    value: ((cloud_name))
+  .properties.system_blobstore.external_azure.packages_container:
+    value: ((pas_packages_container_name))
+  .properties.system_blobstore.external_azure.resources_container:
+    value: ((pas_resources_container_name))
+  .properties.system_blobstore.external_azure.restore_from_access_key:
+    value: {}
+  .properties.system_blobstore_backup_level:
+    selected_option: all
+    value: all
+  .properties.system_blobstore_ccdroplet_max_staged_droplets_stored:
+    value: 2
+  .properties.system_blobstore_ccpackage_max_valid_packages_stored:
+    value: 2
+  .properties.system_database:
+    selected_option: internal_pxc
+    value: internal_pxc
+  .properties.tcp_routing:
+    value: enable
+  .properties.tcp_routing.enable.reservable_ports:
+    value: 1024-1029
+  .properties.uaa:
+    selected_option: internal
+    value: internal
+  .uaa.service_provider_key_credentials:
+    value:
+      cert_pem: |
+        ((ssl_certificate))
+      private_key_pem: |
+        ((ssl_private_key))
+resource-config:
+  compute:
+    instances: 1
+  control:
+    elb_names:
+    - ((ssh_lb_name))
+  database:
+    elb_names:
+    - ((mysql_lb_name))
+  router:
+    elb_names:
+    - ((web_lb_name))
+    instances: 1
+  tcp_router:
+    elb_names:
+    - ((tcp_lb_name))

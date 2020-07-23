@@ -1,0 +1,22 @@
+---
+opsman-configuration:
+  azure:
+    boot_disk_size: "100"
+    client_id: ((client_id))
+    client_secret: ((client_secret))
+    cloud_name: ((iaas_configuration_environment_azurecloud))
+    container: ((ops_manager_container_name))
+    location: ((location))
+    network_security_group: ((ops_manager_security_group_name))
+    private_ip: ((ops_manager_private_ip))
+    public_ip: ((ops_manager_public_ip))
+    resource_group: ((resource_group_name))
+    ssh_public_key: ((ops_manager_ssh_public_key))
+    storage_account: ((ops_manager_storage_account_name))
+    storage_sku: "Premium_LRS"
+    subnet_id: ((management_subnet_id))
+    subscription_id: ((subscription_id))
+    tenant_id: ((tenant_id))
+    use_managed_disk: "true"
+    vm_name: "((resource_group_name))-ops-manager"
+    vm_size: "Standard_DS2_v2"
