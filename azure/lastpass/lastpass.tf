@@ -3,8 +3,8 @@ provider "lastpass" {
 }
 
 variable "azure-servicePrincial-LastPassID" {
-  default = ""
   type = string
+  description = "LastPass entry ID where the azure credentials are stored"
 }
 
 data "lastpass_secret" "azure-ServicePrincipal" {
