@@ -33,7 +33,7 @@ resource "azurerm_dns_ns_record" "test" {
   ttl = 300
 
   records = data.dns_ns_record_set.lookup_hosted_zone.nameservers
-  ]
+  
 }
 
 locals {
