@@ -17,7 +17,7 @@ resource "azurerm_dns_ns_record" "test" {
   ttl = 300
 
   records = [
-    data.azurerm_dns_zone.hosted.name_servers,
+    "${data.azurerm_dns_zone.hosted.name_servers}",
   ]
 }
 
