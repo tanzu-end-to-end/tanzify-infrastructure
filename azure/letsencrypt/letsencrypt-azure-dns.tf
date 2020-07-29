@@ -32,7 +32,7 @@ resource "azurerm_dns_ns_record" "test" {
   ttl = 300
 
   records = [
-    "${azurerm_dns_zone.env_dns_zone.name_servers}",
+    list(azurerm_dns_zone.env_dns_zone.name_servers),
   ]
 }
 
