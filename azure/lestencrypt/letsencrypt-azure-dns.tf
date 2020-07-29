@@ -56,7 +56,7 @@ resource "acme_certificate" "certificate" {
     }
   }
 
-  depends_on = ["azurerm_dns_ns_record.test"]
+  depends_on = [azurerm_dns_ns_record.test]
 }
 
 locals {
