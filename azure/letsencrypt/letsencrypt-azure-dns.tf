@@ -4,6 +4,21 @@ provider "acme" {
   version = "~> 1.2.0"
 }
 
+
+resource "azurerm_resource_group" "resource_group" {
+  name     = "${var.environment_name}"
+  location = "${var.location}"
+}
+
+locals {
+  dns_subdomain = "${var.environment_name}"
+}
+
+resource "azurerm_dns_zone" "env_dns_zone" {
+  name                = "${var.hosted_zone != "" ? var.hosted_zone : local.dns_subdomain}.${var.environment_name}"
+  resource_group_name = "${azurerm_resource_group.resource_group}"
+}
+
 # Test if the DNS name is registered with Azure DNS
 data "azurerm_dns_zone" "hosted" {
   name = var.hosted_zone
@@ -17,7 +32,7 @@ resource "azurerm_dns_ns_record" "test" {
   ttl = 300
 
   records = [
-    "${data.azurerm_dns_zone.hosted.name_servers}",
+    "${azurerm_dns_zone.env_dns_zone.name_servers}",
   ]
 }
 
