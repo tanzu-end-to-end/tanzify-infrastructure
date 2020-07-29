@@ -11,9 +11,16 @@ resource "azurerm_resource_group" "resource_group" {
   location = "${var.location}"
 }
 
+
 locals {
   dns_subdomain = "${var.environment_name}"
 }
+
+resource "azurerm_dns_zone" "env_dns_zone" {
+  name                =  "${local.dns_subdomain}.${var.hosted_zone}"
+  resource_group_name = "${azurerm_resource_group.resource_group.name}"
+}
+
 
 data "azurerm_dns_zone" "tanzifyzone" {
   name = "${var.hosted_zone}"
@@ -27,7 +34,7 @@ resource "azurerm_dns_ns_record" "test" {
   ttl = 300
 
   records = [
-    "${data.azurerm_dns_zone.tanzifyzone.name_servers}",
+    "${azurerm_dns_zone.env_dns_zone.name_servers}",
   ]
 }
 
