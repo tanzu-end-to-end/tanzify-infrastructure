@@ -1,3 +1,4 @@
+
 provider "acme" {
   server_url = "https://acme-v02.api.letsencrypt.org/directory"
 
@@ -14,21 +15,19 @@ locals {
   dns_subdomain = "${var.environment_name}"
 }
 
-resource "azurerm_dns_zone" "env_dns_zone" {
-  name                = "${var.hosted_zone != "" ? var.hosted_zone : local.dns_subdomain}.${var.environment_name}"
-  resource_group_name = "${azurerm_resource_group.resource_group.name}"
+data "azurerm_dns_zone" "tanzifyzone" {
+  name = "${var.hosted_zone}"
 }
-
 
 resource "azurerm_dns_ns_record" "test" {
   name                = var.hosted_zone
-  zone_name           = azurerm_dns_zone.env_dns_zone.name
-  resource_group_name = azurerm_dns_zone.env_dns_zone.resource_group_name
+  zone_name           = data.azurerm_dns_zone.tanzifyzone.name
+  resource_group_name = data.azurerm_dns_zone.tanzifyzone.resource_group_name
 
   ttl = 300
 
   records = [
-    "${azurerm_dns_zone.env_dns_zone.name_servers}"
+    "${data.azurerm_dns_zone.tanzifyzone.name_servers}",
   ]
 }
 
