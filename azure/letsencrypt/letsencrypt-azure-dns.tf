@@ -16,7 +16,7 @@ locals {
 
 resource "azurerm_dns_zone" "env_dns_zone" {
   name                = "${var.hosted_zone != "" ? var.hosted_zone : local.dns_subdomain}.${var.environment_name}"
-  resource_group_name = "${azurerm_resource_group.resource_group}"
+  resource_group_name = "${azurerm_resource_group.resource_group.name}"
 }
 
 # Test if the DNS name is registered with Azure DNS
