@@ -6,34 +6,22 @@ provider "acme" {
 }
 
 
-resource "azurerm_resource_group" "resource_group" {
-  name     = var.environment_name
-  location = var.location
-}
-
-
-locals {
-  dns_subdomain = var.environment_name
-}
-
-data "dns_ns_record_set" "lookup_hosted_zone" {
-  host = var.hosted_zone
-}
-
-
+# Lookup the hosted zone in Azure for the domain
 data "azurerm_dns_zone" "tanzifyzone" {
   name = var.hosted_zone
 }
 
+# Register the subdomain in the same azure dns zone using the same nameservers
+# i.e. Add NS records for the subdomain which is the name of the envrionment
 resource "azurerm_dns_ns_record" "test" {
-  name                = var.hosted_zone
+  name                = var.environment_name
   zone_name           = data.azurerm_dns_zone.tanzifyzone.name
   resource_group_name = data.azurerm_dns_zone.tanzifyzone.resource_group_name
 
   ttl = 300
 
-  records = data.dns_ns_record_set.lookup_hosted_zone.nameservers
-  
+  records = data.azurerm_dns_zone.tanzifyzone.name_servers
+
 }
 
 locals {
@@ -49,6 +37,7 @@ resource "acme_registration" "reg" {
   email_address   = "none@tanzify.org" # Dummy email address
 }
 
+# Use DNS challenge to get TLS certificate for all the domains we need.
 resource "acme_certificate" "certificate" {
   account_key_pem           = acme_registration.reg.account_key_pem
   common_name               = local.base_domain
