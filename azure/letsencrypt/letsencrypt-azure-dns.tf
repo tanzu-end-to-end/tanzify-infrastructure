@@ -19,20 +19,16 @@ resource "azurerm_dns_zone" "env_dns_zone" {
   resource_group_name = "${azurerm_resource_group.resource_group.name}"
 }
 
-# Test if the DNS name is registered with Azure DNS
-data "azurerm_dns_zone" "hosted" {
-  name = var.hosted_zone
-}
 
 resource "azurerm_dns_ns_record" "test" {
   name                = var.hosted_zone
-  zone_name           = data.azurerm_dns_zone.hosted.name
-  resource_group_name = data.azurerm_dns_zone.hosted.resource_group_name
+  zone_name           = azurerm_dns_zone.env_dns_zone.name
+  resource_group_name = azurerm_dns_zone.env_dns_zone.resource_group_name
 
   ttl = 300
 
   records = [
-    list(azurerm_dns_zone.env_dns_zone.name_servers),
+    "${azurerm_dns_zone.env_dns_zone.name_servers}"
   ]
 }
 
