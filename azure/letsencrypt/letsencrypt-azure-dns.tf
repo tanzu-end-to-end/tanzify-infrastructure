@@ -5,28 +5,34 @@ provider "acme" {
   version = "~> 1.2.0"
 }
 
-
-# Lookup the hosted zone in Azure for the domain
-data "azurerm_dns_zone" "tanzifyzone" {
-  name = var.hosted_zone
-}
-
-# Register the subdomain in the same azure dns zone using the same nameservers
-# i.e. Add NS records for the subdomain which is the name of the envrionment
-resource "azurerm_dns_ns_record" "test" {
-  name                = var.environment_name
-  zone_name           = data.azurerm_dns_zone.tanzifyzone.name
-  resource_group_name = data.azurerm_dns_zone.tanzifyzone.resource_group_name
-
-  ttl = 300
-
-  records = data.azurerm_dns_zone.tanzifyzone.name_servers
-
-}
-
 locals {
   base_domain = "${var.environment_name}.${var.hosted_zone}"
 }
+
+# Lookup the hosted zone in Azure for the domain
+data "azurerm_dns_zone" "hostedzone" {
+  name = var.hosted_zone
+}
+
+# Creata a child zone for the environment in the same resource group
+resource "azurerm_dns_zone" "childzone" {
+  name = local.base_domain
+  resource_group_name = data.azurerm_dns_zone.hostedzone.resource_group_name
+}
+
+# Test if the NS record exists in the child zone
+resource "azurerm_dns_ns_record" "test" {
+  name                = var.environment_name
+  zone_name           = azurerm_dns_zone.childzone.name
+  resource_group_name = data.azurerm_dns_zone.hostedzone.resource_group_name
+
+  ttl = 60
+
+  records = data.azurerm_dns_zone.hostedzone.name_servers
+
+}
+
+
 
 resource "tls_private_key" "private_key" {
   algorithm = "RSA"
