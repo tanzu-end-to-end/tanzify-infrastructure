@@ -51,7 +51,7 @@ resource "acme_certificate" "certificate" {
       AZURE_RESOURCE_GROUP  = var.environment_name
     }
   }
-  depends_on = ["dns_ns_record_set.ns_records"]
+  depends_on = [data.dns_ns_record_set.ns_records]
 }
 
 locals {
