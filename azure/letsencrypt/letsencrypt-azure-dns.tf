@@ -12,11 +12,6 @@ data "azurerm_dns_zone" "hosted_zone" {
   name = var.hosted_zone
 }
 
-#Lookup the NS records for the environment
-data "dns_ns_record_set" "ns_records" {
-  host = var.hosted_zone
-}
-
 resource "tls_private_key" "private_key" {
   algorithm = "RSA"
 }
@@ -49,7 +44,6 @@ resource "acme_certificate" "certificate" {
       AZURE_RESOURCE_GROUP  = data.azurerm_dns_zone.hosted_zone.resource_group_name
     }
   }
-  depends_on = [data.dns_ns_record_set.ns_records]
 }
 
 locals {
