@@ -9,30 +9,15 @@ locals {
   base_domain = "${var.environment_name}.${var.hosted_zone}"
 }
 
-# Lookup the hosted zone in Azure for the domain
-data "azurerm_dns_zone" "hostedzone" {
+#Lookup the hosted zone in Azure for the domain
+data "azurerm_dns_zone" "hosted_zone" {
   name = var.hosted_zone
 }
 
-# Creata a child zone for the environment in the same resource group
-resource "azurerm_dns_zone" "childzone" {
-  name = local.base_domain
-  resource_group_name = data.azurerm_dns_zone.hostedzone.resource_group_name
+#Lookup the NS records for the environment
+data "dns_ns_record_set" "ns_records" {
+  host = local.base_domain
 }
-
-# Test if the NS record exists in the child zone
-resource "azurerm_dns_ns_record" "test" {
-  name                = var.environment_name
-  zone_name           = azurerm_dns_zone.childzone.name
-  resource_group_name = data.azurerm_dns_zone.hostedzone.resource_group_name
-
-  ttl = 60
-
-  records = data.azurerm_dns_zone.hostedzone.name_servers
-
-}
-
-
 
 resource "tls_private_key" "private_key" {
   algorithm = "RSA"
@@ -45,6 +30,7 @@ resource "acme_registration" "reg" {
 
 # Use DNS challenge to get TLS certificate for all the domains we need.
 resource "acme_certificate" "certificate" {
+  count = length(data.dns_ns_record_set.ns_records.nameservers)
   account_key_pem           = acme_registration.reg.account_key_pem
   common_name               = local.base_domain
   subject_alternative_names = [ "opsmanager.${local.base_domain}",
@@ -65,8 +51,6 @@ resource "acme_certificate" "certificate" {
       AZURE_RESOURCE_GROUP  = var.environment_name
     }
   }
-
-  depends_on = [azurerm_dns_ns_record.test]
 }
 
 locals {
