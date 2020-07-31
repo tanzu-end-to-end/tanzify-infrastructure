@@ -29,6 +29,9 @@ variable "location" {
   type = string
 }
 
+variable "subject_alternative_names" {
+  type = list
+}
 variable "cloud_name" {
   description = "The Azure cloud environment to use. Available values at https://www.terraform.io/docs/providers/azurerm/#environment"
   type        = string

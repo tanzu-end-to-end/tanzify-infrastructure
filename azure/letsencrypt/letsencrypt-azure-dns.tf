@@ -26,12 +26,7 @@ resource "acme_certificate" "certificate" {
 
   account_key_pem           = acme_registration.reg.account_key_pem
   common_name               = local.base_domain
-  /*subject_alternative_names = [ "opsmanager.${local.base_domain}",
-                                "*.apps.${local.base_domain}",
-                                "*.sys.${local.base_domain}",
-                                "*.uaa.sys.${local.base_domain}",
-                                "*.login.sys.${local.base_domain}",
-                                "pks.${local.base_domain}"]*/
+  subject_alternative_names = formatlist("%s.%s", var.subject_alternative_names , local.base_domain)
 
   dns_challenge {
     provider = "azure"
