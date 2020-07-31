@@ -30,7 +30,7 @@ resource "acme_registration" "reg" {
 
 # Use DNS challenge to get TLS certificate for all the domains we need.
 resource "acme_certificate" "certificate" {
-  count = length(data.dns_ns_record_set.ns_records.nameservers)
+
   account_key_pem           = acme_registration.reg.account_key_pem
   common_name               = local.base_domain
   subject_alternative_names = [ "opsmanager.${local.base_domain}",
@@ -51,6 +51,7 @@ resource "acme_certificate" "certificate" {
       AZURE_RESOURCE_GROUP  = var.environment_name
     }
   }
+  depends_on = ["dns_ns_record_set.ns_records"]
 }
 
 locals {
