@@ -1,8 +1,6 @@
 
 provider "acme" {
-  server_url = "https://acme-v02.api.letsencrypt.org/directory"
-
-  version = "~> 1.2.0"
+  server_url = "https://acme-staging-v02.api.letsencrypt.org/directory"
 }
 
 locals {
@@ -33,12 +31,12 @@ resource "acme_certificate" "certificate" {
 
   account_key_pem           = acme_registration.reg.account_key_pem
   common_name               = local.base_domain
-  subject_alternative_names = [ "opsmanager.${local.base_domain}",
+  /*subject_alternative_names = [ "opsmanager.${local.base_domain}",
                                 "*.apps.${local.base_domain}",
                                 "*.sys.${local.base_domain}",
                                 "*.uaa.sys.${local.base_domain}",
                                 "*.login.sys.${local.base_domain}",
-                                "pks.${local.base_domain}"]
+                                "pks.${local.base_domain}"]*/
 
   dns_challenge {
     provider = "azure"
