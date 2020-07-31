@@ -16,7 +16,7 @@ data "azurerm_dns_zone" "hosted_zone" {
 
 #Lookup the NS records for the environment
 data "dns_ns_record_set" "ns_records" {
-  host = local.base_domain
+  host = var.hosted_zone
 }
 
 resource "tls_private_key" "private_key" {
