@@ -38,7 +38,7 @@ resource "acme_certificate" "certificate" {
                                 "*.sys.${local.base_domain}",
                                 "*.uaa.sys.${local.base_domain}",
                                 "*.login.sys.${local.base_domain}",
-                                "*.pks.${local.base_domain}"]
+                                "pks.${local.base_domain}"]
 
   dns_challenge {
     provider = "azure"
@@ -48,7 +48,7 @@ resource "acme_certificate" "certificate" {
       AZURE_CLIENT_SECRET   = var.client_secret
       AZURE_SUBSCRIPTION_ID = var.subscription_id
       AZURE_TENANT_ID       = var.tenant_id
-      AZURE_RESOURCE_GROUP  = var.environment_name
+      AZURE_RESOURCE_GROUP  = data.azurerm_dns_zone.hosted_zone.resource_group_name
     }
   }
   depends_on = [data.dns_ns_record_set.ns_records]
