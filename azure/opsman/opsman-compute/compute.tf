@@ -7,7 +7,7 @@ resource "azurerm_storage_blob" "ops_manager_image" {
   name = "opsman.vhd"
   //resource_group_name    = azurerm_resource_group.platform.name
   storage_account_name   = var.ops_manager_storage_account_name
-  storage_container_name = ops_manager_storage_container_name
+  storage_container_name = var.ops_manager_storage_container_name
   source_uri             = local.ops_manager_image_uri
   type                   = "Page"
 }
