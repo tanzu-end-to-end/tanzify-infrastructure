@@ -52,7 +52,7 @@ variable "ops_manager_instance_type" {
 
 variable "resource_group_name" {}
 
-variable "security_group_id" {}
+variable "ops_manager_security_group_name" {}
 
 variable "subnet_id" {}
 

@@ -25,11 +25,17 @@ resource "azurerm_image" "ops_manager_image" {
   }
 }
 
+data "azurerm_network_security_group" "ops_manager_security_group" {
+  name                = var.ops_manager_security_group_name
+  resource_group_name = var.resource_group_name
+}
+
 resource "azurerm_network_interface" "ops_manager_nic" {
   name                      = "${var.environment_name}-ops-manager-nic"
   location                  = var.location
   resource_group_name       = var.resource_group_name
-  network_security_group_id = var.security_group_id
+
+  network_security_group_id = data.azurerm_network_security_group.ops_manager_security_group.id
 
 
   ip_configuration {
