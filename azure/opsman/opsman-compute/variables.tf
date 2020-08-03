@@ -37,26 +37,16 @@ variable "opsman_version" {
 variable ops_manager_ssh_public_key {
   type = string
 }
-
 variable "ops_manager_storage_account_name" {}
 variable "ops_manager_storage_container_name" {}
 variable "ops_manager_dns" {}
-variable "ssl_cert" {}
-variable "ssl_private_key" {}
-
-
 variable "ops_manager_private_ip" {}
-
+variable "resource_group_name" {}
+variable "ops_manager_security_group_name" {}
+variable "subnet_id" {}
 variable "ops_manager_instance_type" {
   default = "Standard_DS2_v2"
   type    = string
 }
-
-variable "resource_group_name" {}
-
-variable "ops_manager_security_group_name" {}
-
-variable "subnet_id" {}
-
 
 
