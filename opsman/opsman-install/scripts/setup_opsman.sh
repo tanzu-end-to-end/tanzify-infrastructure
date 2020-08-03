@@ -139,7 +139,7 @@ sleep 20
 
 # Configure authentication in OpsMan
 echo 'Configuring OpsMan authentication...'
-om configure-authentication -u $OM_USERNAME -p $OM_PASSWORD -dp $OM_PASSWORD
+om -k configure-authentication -u $OM_USERNAME -p $OM_PASSWORD -dp $OM_PASSWORD
 
 
 # Set up for file locks
