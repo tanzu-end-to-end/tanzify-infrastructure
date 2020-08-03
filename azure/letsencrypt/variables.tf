@@ -39,6 +39,10 @@ variable "subject_alternative_names" {
   type = list
 }
 
+variable "acme_server_url" {
+  default = "https://acme-v02.api.letsencrypt.org/directory"
+}
+
 
 
 
