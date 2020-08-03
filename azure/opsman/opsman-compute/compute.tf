@@ -29,6 +29,10 @@ data "azurerm_network_security_group" "ops_manager_security_group" {
   name                = var.ops_manager_security_group_name
   resource_group_name = var.resource_group_name
 }
+data "azurerm_public_ip" "ops_manager_public_ip" {
+  name                = "${var.environment_name}-ops-manager-public-ip"
+  resource_group_name = var.resource_group_name
+}
 
 resource "azurerm_network_interface" "ops_manager_nic" {
   name                      = "${var.environment_name}-ops-manager-nic"
@@ -43,7 +47,7 @@ resource "azurerm_network_interface" "ops_manager_nic" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "static"
     private_ip_address            = var.ops_manager_private_ip
-    public_ip_address_id          = var.ops_manager_public_ip_id
+    public_ip_address_id          = data.azurerm_public_ip.ops_manager_public_ip.id
   }
 }
 

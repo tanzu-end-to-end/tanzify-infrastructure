@@ -37,7 +37,6 @@ variable ops_manager_ssh_public_key
 
 variable "ops_manager_storage_account_name" {}
 variable "ops_manager_storage_container_name" {}
-variable "ops_manager_public_ip_id" {}
 variable "ops_manager_dns" {}
 variable "ssl_cert" {}
 variable "ssl_private_key" {}
