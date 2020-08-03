@@ -1,6 +1,6 @@
 
 locals {
-  ops_manager_image_uri = "https://opsmanagerwestus.blob.core.windows.net/images/ops-manager-${var.opsman_version}-build.${var.opsman-build}.vhd"
+  ops_manager_image_uri = "https://opsmanager${image-location}.blob.core.windows.net/images/ops-manager-${var.opsman_version}-build.${var.opsman-build}.vhd"
 }
 
 resource "azurerm_storage_blob" "ops_manager_image" {

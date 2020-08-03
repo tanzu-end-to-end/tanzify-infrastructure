@@ -33,8 +33,7 @@ variable "pivnet_token" {
   type = string
 }
 
-variable ops_manager_ssh_private_key
-{
+variable ops_manager_ssh_private_key {
   type = string
 }
 

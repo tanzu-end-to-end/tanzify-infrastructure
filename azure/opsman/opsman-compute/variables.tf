@@ -1,5 +1,10 @@
 # ==================== Variables
 
+# This is where the Opsman local images are stored. Possible values are westus, eastus, westeurope, southeastasia
+variable "image-location" {
+  type = string
+  default = "eastus"
+}
 variable "cloud_name" {
   description = "The Azure cloud environment to use. Available values at https://www.terraform.io/docs/providers/azurerm/#environment"
   type        = string

@@ -43,7 +43,7 @@ resource "null_resource" "setup_opsman" {
 resource "null_resource" "cleanup_opsman" {
 
   provisioner "remote-exec" {
-    when = "destroy"
+    when = destroy
 
     inline = ["wrap destroy_opsman"]
   }
@@ -54,5 +54,5 @@ resource "null_resource" "cleanup_opsman" {
     private_key = var.ops_manager_ssh_private_key
   }
 
-  depends_on = ["null_resource.setup_opsman"]
+  depends_on = [null_resource.setup_opsman]
 }
