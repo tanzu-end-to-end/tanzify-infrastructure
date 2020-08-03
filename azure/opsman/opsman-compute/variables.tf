@@ -34,8 +34,7 @@ variable "opsman_version" {
   type = string
 }
 
-variable ops_manager_ssh_public_key
-{
+variable ops_manager_ssh_public_key {
   type = string
 }
 
