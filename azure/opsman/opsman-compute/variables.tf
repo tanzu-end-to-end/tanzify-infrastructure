@@ -27,8 +27,12 @@ variable "tenant_id" {
 }
 variable "environment_name" {}
 
-variable "opsman-build" {type = string}
-variable "opsman_version" {type = string}
+variable "opsman-build" {
+  type = string
+}
+variable "opsman_version" {
+  type = string
+}
 
 variable ops_manager_ssh_public_key
 {
