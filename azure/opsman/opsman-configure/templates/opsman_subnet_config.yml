@@ -1,5 +1,0 @@
-      - iaas_identifier: ${id}
-        cidr: ${cidr}
-        dns: ${dns}
-        gateway: ${gateway}
-        reserved_ip_ranges: ${reserved}
