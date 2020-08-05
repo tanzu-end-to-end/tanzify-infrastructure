@@ -42,6 +42,6 @@ resource "acme_certificate" "certificate" {
 }
 
 locals {
-  cert_full_chain = "${acme_certificate.certificate.certificate_pem}${acme_certificate.certificate.issuer_pem}"
+  cert_full_chain = "${acme_certificate.certificate.certificate_pem}"
   cert_key        = "${acme_certificate.certificate.private_key_pem}"
 }
