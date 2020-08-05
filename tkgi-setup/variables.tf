@@ -23,10 +23,4 @@ variable "pks_lb_name" {}
 
 
 
-output "hello" {
-  value = local.pks_yml
-
-}
-
-
 
