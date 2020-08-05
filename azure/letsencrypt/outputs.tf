@@ -9,5 +9,5 @@ output "cert_ca" {
 
 output "cert_private_key" {
   value = local.cert_key
-  sensitive = true
+  //sensitive = true
 }
