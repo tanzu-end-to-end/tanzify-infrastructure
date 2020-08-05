@@ -19,6 +19,11 @@ data "template_file" "pks_config" {
   }
 }
 
+resource "local_file" "pks_yml" {
+  content  = data.template_file.pks_config.rendered
+  filename = "pks-rendered.yml"
+}
+
 /*
 resource "random_string" "pks_password" {
   length  = 8
