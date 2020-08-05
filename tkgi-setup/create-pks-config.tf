@@ -2,8 +2,8 @@
 data "template_file" "pks_config" {
   template = chomp(file("${path.module}/config/pks.yml"))
   vars = {
-    ssl_certificate = yamlencode(var.ssl_certificate)
-    ssl_private_key = yamlencode(var.ssl_private_key)
+    ssl_certificate = var.ssl_certificate
+    ssl_private_key = var.ssl_private_key
     platform_vms_security_group_name = var.platform_vms_security_group_name
     location = var.location
     pks_as_name = var.pks_as_name
