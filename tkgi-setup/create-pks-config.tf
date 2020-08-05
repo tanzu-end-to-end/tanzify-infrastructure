@@ -2,9 +2,9 @@
 data "template_file" "pks_config" {
   template = chomp(file("${path.module}/config/pks.yml"))
   vars = {
-    ssl_certificate = jsonencode(var.ssl_certificate)
-    ssl_private_key = jsonencode(var.ssl_private_key)
-    
+    ssl_certificate = "${var.ssl_certificate}"
+    ssl_private_key = "${var.ssl_private_key}"
+
   }
 }
 
