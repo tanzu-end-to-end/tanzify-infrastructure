@@ -1,0 +1,34 @@
+product-name: p-cloudcache
+product-properties:
+  .properties.errand_plan:
+    value: plan1
+  .properties.plan1_enable_service_plan.enable.service_instance_azs:
+    value:
+      - ((availability_zones.0))
+      - ((availability_zones.1))
+      - ((availability_zones.2))
+  .properties.plan2_enable_service_plan:
+    value: disable
+  .properties.plan3_enable_service_plan:
+    value: disable
+  .properties.plan4_enable_service_plan:
+    value: disable
+  .properties.plan5_enable_service_plan:
+    value: disable
+  .properties.dev_plan_enable_service_plan:
+    value: disable
+  .properties.small_footprint_enable_service_plan:
+    value: disable
+  .properties.confirm_tls_setup:
+    value: X
+network-properties:
+  network:
+    name: pas
+  service_network:
+    name: services
+  other_availability_zones:
+  - name: ((availability_zones.0))
+  - name: ((availability_zones.1))
+  - name: ((availability_zones.2))
+  singleton_availability_zone:
+    name: ((availability_zones.0))
