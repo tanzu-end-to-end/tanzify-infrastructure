@@ -34,7 +34,7 @@ fi
 if [ ! -f /usr/bin/om ]; then
   echo 'Downloading om CLI...'
 
-  wget -q https://github.com/pivotal-cf/om/releases/download/$OM_VERSION/om-linux -O om
+  wget -q https://github.com/pivotal-cf/om/releases/download/$OM_VERSION/om-linux-$OM_VERSION -O om
 
   sudo mv om /usr/bin
   sudo chmod +x /usr/bin/om
