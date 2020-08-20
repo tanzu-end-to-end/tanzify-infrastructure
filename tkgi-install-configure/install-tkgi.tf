@@ -26,6 +26,10 @@ resource "null_resource" "configure_tkgi" {
     inline = ["wrap configure_tile ~/config/pks.yml ~/config/pks-config-vars.yml"]
   }
 
+  provisioner "remote-exec" {
+    inline = ["wrap apply_changes"]
+  }
+
 //  provisioner "remote-exec" {
 //    inline = ["wrap post_install_opsman ${var.bosh_director_ip}"]
 //  }

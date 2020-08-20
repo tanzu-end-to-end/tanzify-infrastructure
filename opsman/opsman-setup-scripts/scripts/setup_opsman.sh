@@ -102,7 +102,7 @@ if [ ! -f /usr/bin/install_ssl_certs ]; then
   sudo mv /tmp/install_ssl_certs.sh /usr/bin/install_ssl_certs
 fi
 
-sudo chmod +x /usr/bin/install_raw_tile
+sudo chmod +x /usr/bin/install_ssl_certs
 ##
 
 if [ ! -f /usr/bin/install_tile ]; then

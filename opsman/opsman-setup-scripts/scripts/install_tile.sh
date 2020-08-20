@@ -23,10 +23,10 @@ fi
 tile_files="files/${product_slug}/$version"
 metadata_filename="${tile_files}/download-file.json"
 
-check_staged_payload=$(om staged-products -f json | jq -r ".[] | select(.name==\"$om_product\") | .version")
+check_staged_payload=$(om -k staged-products -f json | jq -r ".[] | select(.name==\"$om_product\") | .version")
 
 if [ -z "$check_staged_payload" ]; then
-  check_available_payload=$(om available-products -f json)
+  check_available_payload=$(om -k available-products -f json)
 
   if [ "$check_available_payload" != "no available products found" ]; then
     check=$(echo $check_available_payload | jq ".[] | select(.name==\"$om_product\" and .version==\"$version\") | .name")
@@ -44,7 +44,7 @@ if [ -z "$check_staged_payload" ]; then
 
       pivnet accept-eula -p $product_slug -r $version
 
-      om download-product -p $product_slug -f "*$glob*" -r $version --stemcell-iaas $iaas --pivnet-api-token $PIVNET_TOKEN -o $tile_files
+      om -k download-product -p $product_slug -f "*$glob*" -r $version --stemcell-iaas $iaas --pivnet-api-token $PIVNET_TOKEN -o $tile_files
 
       #pivnet download-product-files --accept-eula -p $product_slug -r $version -g "*$glob*"
     else
@@ -55,7 +55,7 @@ if [ -z "$check_staged_payload" ]; then
 
     filename=$(cat $metadata_filename | jq -r '.product_path')
 
-    flock $lock_file -c "om -t https://localhost -k upload-product -p $filename"
+    flock $lock_file -c "om -k -t https://localhost -k upload-product -p $filename"
 
     echo "Installed tile $product_slug v$version"
     
@@ -63,7 +63,7 @@ if [ -z "$check_staged_payload" ]; then
     echo "Tile $product_slug v$version is already installed"
   fi
 
-  om_version=$(om available-products -f json | jq -r ".[] | select(.name==\"$om_product\") | .version")
+  om_version=$(om -k available-products -f json | jq -r ".[] | select(.name==\"$om_product\") | .version")
 
   if [ -z "$om_version" ]; then
     echo "Error: Failed to find available product in OM named $om_product"
@@ -75,7 +75,7 @@ if [ -z "$check_staged_payload" ]; then
 
     echo "Staging product version $om_version for $om_product in OM available products..."
 
-    om stage-product -p $om_product -v $om_version
+    om -k stage-product -p $om_product -v $om_version
   else
     echo "Skipping staging $om_product"
   fi
@@ -85,4 +85,4 @@ fi
 
 stemcell_path=$(cat $metadata_filename | jq -r '.stemcell_path')
 
-flock $lock_file -c "om -t https://localhost -k upload-stemcell -f -s $stemcell_path"
+flock $lock_file -c "om -k -t https://localhost -k upload-stemcell -f -s $stemcell_path"

@@ -4,4 +4,4 @@ set -e
 
 source ~/.om_profile
 
-om apply-changes
+om -k apply-changes
