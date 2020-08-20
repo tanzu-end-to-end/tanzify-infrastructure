@@ -23,7 +23,7 @@ resource "null_resource" "configure_tkgi" {
   }
 
   provisioner "remote-exec" {
-    inline = ["wrap configure_tile ~/config/pks.yml ~/config/pks-config-vars.yml"]
+    inline = ["wrap configure_tile_with_vars ~/config/pks.yml ~/config/pks-config-vars.yml"]
   }
 
   provisioner "remote-exec" {
