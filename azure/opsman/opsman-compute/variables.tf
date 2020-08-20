@@ -42,6 +42,10 @@ variable "opsman_version" {
 variable ops_manager_ssh_public_key {
   type = string
 }
+variable ops_manager_ssh_private_key {
+  type = string
+}
+
 variable "ops_manager_storage_account_name" {}
 variable "ops_manager_storage_container_name" {}
 variable "ops_manager_dns" {}
