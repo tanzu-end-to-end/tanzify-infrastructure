@@ -37,10 +37,12 @@ variable "hosted_zone" {
 
 variable "subject_alternative_names" {
   type = list
+  description = "SANs to support. Put your wildcard and subdomains here."
 }
 
 variable "acme_server_url" {
   default = "https://acme-v02.api.letsencrypt.org/directory"
+  description = "ACME API service endpoint. Points to LetsEncrypt by default."
 }
 
 
