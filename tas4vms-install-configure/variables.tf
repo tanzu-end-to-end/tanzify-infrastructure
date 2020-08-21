@@ -16,19 +16,19 @@ variable "tas4vms_configuration_values" {
 }
 
 variable "tas4vms_slug" {
-  default = "srt"
+  default = "elastic-runtime"
 }
 variable "tas4vms_tile_version" {
   default = "2.9.9"
 }
 variable "glob" {
   description = "The glob of the file to download from Pivotal Network"
-  default     = ".pivotal"
+  default     = "srt"
 }
 
 variable "om_product" {
   description = "The name of the product in OpsManager, if it differs from the product slug"
-  default     = ""
+  default     = "cf"
 }
 
 
