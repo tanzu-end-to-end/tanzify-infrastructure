@@ -8,7 +8,7 @@ resource "null_resource" "configure_tas4vms" {
 
   // copy config file
   provisioner "file" {
-    source      = "${path.module}/configuration/${var.iaas}/pks.yml"
+    source      = "${path.module}/configuration/${var.iaas}/srt.yml"
     destination = "~/config/srt.yml"
   }
 
@@ -26,7 +26,9 @@ resource "null_resource" "configure_tas4vms" {
   provisioner "remote-exec" {
     inline = ["wrap configure_tile_with_vars ~/config/srt.yml ~/config/srt-config-vars.yml"]
   }
-
+  provisioner "remote-exec" {
+    inline = ["wrap apply_changes"]
+  }
 
   connection {
     host        = var.ops_manager_dns
