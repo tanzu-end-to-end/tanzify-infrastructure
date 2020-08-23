@@ -10,11 +10,16 @@ variable "ops_manager_dns" {
 
 
 variable "iaas" {
-  description = "aws/azure/gcp"
+  description = "which cloud? (aws/azure/gcp)"
 }
 
 variable "tile_configuration_values" {
-  description = "configuration values in yaml/json format that will be used by 'om configure-product' to configure the tile"
+  description = "configuration values in json format that will be used by 'om configure-product' to configure the tile"
+}
+
+variable "hosted_zone" {
+  description = "root domain name"
+
 }
 
 variable "tile_slug" {

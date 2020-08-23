@@ -12,18 +12,16 @@ product-properties:
     value: ((tls_ca_cert))
   .properties.admin_password:
     value:
-      secret: ((admin_password))
+      secret: VMware1!
 network-properties:
   network:
     name: pks
   service_network:
     name: services
   other_availability_zones:
-    - name: ((availability_zones.0))
-    - name: ((availability_zones.1))
-    - name: ((availability_zones.2))
+    - name: Availability Sets
   singleton_availability_zone:
-    name: ((availability_zones.0))
+    name: Availability Sets
 resource-config:
   harbor-app:
     elb_names:

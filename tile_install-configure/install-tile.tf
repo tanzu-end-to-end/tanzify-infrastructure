@@ -7,13 +7,13 @@ resource "null_resource" "configure_tile" {
 
   // copy config file
   provisioner "file" {
-    source      = "${path.module}/configuration/${var.tile_slug}_config.yml"
+    source      = "${path.module}/configuration/${var.iaas}/${var.tile_slug}_config.yml"
     destination = "~/config/${var.tile_slug}-config.yml"
   }
 
   // copy ops file with values
   provisioner "file" {
-    content     = var.tile_configuration_values
+    content     = jsonencode(merge(jsondecode(var.tile_configuration_values), var.hosted_zone))
     destination = "~/config/${var.tile_slug}-config-vars.yml"
   }
 
