@@ -1,10 +1,12 @@
 
 terraform {
   required_providers {
-    lastpass = "~> 0.5.0"
+    lastpass = {
+      source = "nrkno/lastpass"
+      version = "0.5.1"
+    }
   }
 }
-
 
 variable "credential-LastPassID" {
   type = string
