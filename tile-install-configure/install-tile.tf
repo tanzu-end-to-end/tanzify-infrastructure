@@ -13,7 +13,7 @@ resource "null_resource" "configure_tile" {
 
   // copy ops file with values
   provisioner "file" {
-    content     = jsonencode(merge(jsondecode(var.tile_configuration_values), tomap(var.hosted_zone)))
+    content     = jsonencode(merge(jsondecode(var.tile_configuration_values), var.map_extratile_configuration))
     destination = "~/config/${var.tile_slug}-config-vars.yml"
   }
 

@@ -17,9 +17,10 @@ variable "tile_configuration_values" {
   description = "configuration values in json format that will be used by 'om configure-product' to configure the tile"
 }
 
-variable "hosted_zone" {
-  description = "root domain name"
-
+variable "map_extratile_configuration" {
+  description = "extra tile configs values to merge"
+  default     = {}
+  type        = map(string)
 }
 
 variable "tile_slug" {
