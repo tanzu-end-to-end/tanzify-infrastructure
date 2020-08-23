@@ -12,7 +12,7 @@ variable "cloud_name" {
 
 
 variable "location" {
-  default = ""
+
 }
 
 variable "subscription_id" {

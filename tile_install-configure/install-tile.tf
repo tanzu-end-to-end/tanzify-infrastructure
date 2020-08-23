@@ -7,8 +7,8 @@ resource "null_resource" "configure_tile" {
 
   // copy config file
   provisioner "file" {
-    source      = "${path.module}/configuration/${var.iaas}/${var.tile_slug}.yml"
-    destination = "~/config/${var.tile_slug}.yml"
+    source      = "${path.module}/configuration/${var.tile_slug}_config.yml"
+    destination = "~/config/${var.tile_slug}-config.yml"
   }
 
   // copy ops file with values
@@ -23,7 +23,7 @@ resource "null_resource" "configure_tile" {
   }
 
   provisioner "remote-exec" {
-    inline = ["wrap configure_tile_with_vars ~/config/${var.tile_slug}.yml ~/config/${var.tile_slug}-config-vars.yml"]
+    inline = ["wrap configure_tile_with_vars ~/config/${var.tile_slug}-config.yml ~/config/${var.tile_slug}-config-vars.yml"]
   }
 
 

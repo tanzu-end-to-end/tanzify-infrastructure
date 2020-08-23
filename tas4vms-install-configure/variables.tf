@@ -12,7 +12,7 @@ variable "ops_manager_dns" {
 variable "iaas" {}
 
 variable "tas4vms_configuration_values" {
-  description = "config values "
+  description = "configuration values in yaml/json format that will be used by 'om configure-product' to configure the tile"
 }
 
 variable "tas4vms_slug" {
