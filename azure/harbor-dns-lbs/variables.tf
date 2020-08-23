@@ -24,8 +24,11 @@ variable "tenant_id" {
 variable "environment_name" {}
 
 variable "tags" {
-  default = ""
+  description = "Key/value tags to assign to all resources."
+  default     = {}
+  type        = map(string)
 }
+
 
 variable "resource_group_name" {}
 
