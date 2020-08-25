@@ -13,10 +13,10 @@ resource "null_resource" "configure_tile" {
 
   // copy ops file with values
   provisioner "file" {
-    content     = yamlencode(merge(jsondecode(var.tile_configuration_values), var.map_extratile_configuration))
+    content     = jsonencode(merge(jsondecode(var.tile_configuration_values), var.map_extratile_configuration))
     destination = "~/config/${var.tile_slug}-config-vars.yml"
   }
-  // create the vm_extesions fileusing the yml config passed in.
+  // create the vm_extensions fileusing the yml config passed in.
   provisioner "file" {
     content      = var.vm_extensions_configuration_in_yml
     destination = "~/config/${var.tile_slug}-vm-extensions.yml"
@@ -24,7 +24,7 @@ resource "null_resource" "configure_tile" {
 
   // Apply the vm_extensions if any with the BOSH director. This is needed for some tiles like Harbor.
   provisioner "remote-exec" {
-    inline = ["wrap create_vm_extensions ~/config/${var.tile_slug}-vm-extensions.yml ~/config/${var.tile_slug}-config-vars.yml"]
+    inline = ["wrap create_vm_extensions ~/config/${var.tile_slug}-vm-extensions.yml"]
   }
 
   provisioner "remote-exec" {

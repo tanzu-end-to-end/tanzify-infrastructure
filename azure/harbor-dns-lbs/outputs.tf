@@ -3,6 +3,6 @@ output "harbor_domain" {
 }
 
 output "vm-extensions-yaml" {
-  value = file("${path.module}/configuration/vm-extensions.yml")
+  value = data.template_file.vm_extension_configuration.rendered
 }
 
