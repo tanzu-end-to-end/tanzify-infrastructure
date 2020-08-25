@@ -10,14 +10,10 @@ product-properties:
         ((ssl_private_key))
   .properties.admin_password:
     value:
-      secret: VMware1!
+      secret: ((harbor_admin_password))
 network-properties:
   network:
     name: management
-  service_network:
-    name: services
-  other_availability_zones:
-    - name: Availability Sets
   singleton_availability_zone:
     name: Availability Sets
 resource-config:

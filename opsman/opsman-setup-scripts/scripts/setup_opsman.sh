@@ -50,79 +50,41 @@ pivnet login --api-token $pivnet_api_token
 echo 'Installing convenience scripts...'
 
 ####
-if [ ! -f /usr/bin/apply_changes ]; then
-  sudo mv /tmp/apply_changes.sh /usr/bin/apply_changes
-fi
 
+sudo mv /tmp/apply_changes.sh /usr/bin/apply_changes
 sudo chmod +x /usr/bin/apply_changes
 ###
-
-if [ ! -f /usr/bin/configure_authentication ]; then
-  sudo mv /tmp/configure_authentication.sh /usr/bin/configure_authentication
-fi
-
+sudo mv /tmp/configure_authentication.sh /usr/bin/configure_authentication
 sudo chmod +x /usr/bin/configure_authentication
 ##
-
-if [ ! -f /usr/bin/configure_director ]; then
-  sudo mv /tmp/configure_director.sh /usr/bin/configure_director
-fi
-
+sudo mv /tmp/configure_director.sh /usr/bin/configure_director
 sudo chmod +x /usr/bin/configure_director
 ##
-
-if [ ! -f /usr/bin/configure_tile ]; then
-  sudo mv /tmp/configure_tile_with_vars.sh /usr/bin/configure_tile_with_vars
-fi
-
-sudo chmod +x /usr/bin/configure_tile_with_vars
-##
-if [ ! -f /usr/bin/configure_tile_with_ops ]; then
-  sudo mv /tmp/configure_tile_with_ops.sh /usr/bin/configure_tile_with_ops
-fi
-
+sudo mv /tmp/configure_tile_with_ops.sh /usr/bin/configure_tile_with_ops
 sudo chmod +x /usr/bin/configure_tile_with_ops
 ##
-
-if [ ! -f /usr/bin/destroy_opsman ]; then
-  sudo mv /tmp/destroy_opsman.sh /usr/bin/destroy_opsman
-fi
-
+sudo mv /tmp/configure_tile_with_vars.sh /usr/bin/configure_tile_with_vars
+sudo chmod +x /usr/bin/configure_tile_with_vars
+##
+sudo mv /tmp/create_vm_extensions.sh /usr/bin/create_vm_extensions
+sudo chmod +x /usr/bin/create_vm_extensions
+##
+sudo mv /tmp/destroy_opsman.sh /usr/bin/destroy_opsman
 sudo chmod +x /usr/bin/destroy_opsman
 ##
-
-if [ ! -f /usr/bin/install_raw_tile ]; then
-  sudo mv /tmp/install_raw_tile.sh /usr/bin/install_raw_tile
-fi
-
+sudo mv /tmp/install_raw_tile.sh /usr/bin/install_raw_tile
 sudo chmod +x /usr/bin/install_raw_tile
 ##
-
-if [ ! -f /usr/bin/install_ssl_certs ]; then
-  sudo mv /tmp/install_ssl_certs.sh /usr/bin/install_ssl_certs
-fi
-
+sudo mv /tmp/install_ssl_certs.sh /usr/bin/install_ssl_certs
 sudo chmod +x /usr/bin/install_ssl_certs
 ##
-
-if [ ! -f /usr/bin/install_tile ]; then
-  sudo mv /tmp/install_tile.sh /usr/bin/install_tile
-fi
-
+sudo mv /tmp/install_tile.sh /usr/bin/install_tile
 sudo chmod +x /usr/bin/install_tile
 ##
-
-if [ ! -f /usr/bin/post_install_opsman ]; then
-  sudo mv /tmp/post_install_opsman.sh /usr/bin/post_install_opsman
-fi
-
+sudo mv /tmp/post_install_opsman.sh /usr/bin/post_install_opsman
 sudo chmod +x /usr/bin/post_install_opsman
 ##
-
-if [ ! -f /usr/bin/wrap ]; then
-  sudo mv /tmp/wrap.sh /usr/bin/wrap
-fi
-
+sudo mv /tmp/wrap.sh /usr/bin/wrap
 sudo chmod +x /usr/bin/wrap
 
 echo 'Setting up profile scripts...'

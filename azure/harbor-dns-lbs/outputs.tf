@@ -5,3 +5,4 @@ output "harbor_domain" {
 output "vm-extensions-yaml" {
   value = file("${path.module}/configuration/vm-extensions.yml")
 }
+

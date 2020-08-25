@@ -31,7 +31,13 @@ resource "null_resource" "configure_and_apply_director" {
     inline = ["wrap configure_director"]
   }
 
-//  provisioner "remote-exec" {
+  provisioner "remote-exec" {
+    when = "destroy"
+
+    inline = ["wrap destroy_opsman"]
+  }
+
+  //  provisioner "remote-exec" {
 //    inline = ["wrap post_install_opsman ${var.bosh_director_ip}"]
 //  }
 
