@@ -13,7 +13,7 @@ resource "null_resource" "configure_tile" {
 
   // copy ops file with values
   provisioner "file" {
-    content     = jsonencode(merge(jsondecode(var.tile_configuration_values), var.map_extratile_configuration))
+    content     = yamlencode(merge(jsondecode(var.tile_configuration_values), var.map_extratile_configuration))
     destination = "~/config/${var.tile_slug}-config-vars.yml"
   }
   // create the vm_extesions fileusing the yml config passed in.
