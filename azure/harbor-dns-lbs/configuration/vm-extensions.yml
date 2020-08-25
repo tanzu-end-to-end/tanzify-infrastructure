@@ -1,0 +1,5 @@
+vm-extension-config:
+  - name: harbor-lb-security-groups
+    cloud_properties:
+      security_group: ((environment_name))-harbor-network-sg
+      application_security_groups: ["((environment_name))-harbor-app-sg"]

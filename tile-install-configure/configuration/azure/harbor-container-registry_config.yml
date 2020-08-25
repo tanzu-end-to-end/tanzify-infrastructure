@@ -13,7 +13,7 @@ product-properties:
       secret: VMware1!
 network-properties:
   network:
-    name: pks
+    name: management
   service_network:
     name: services
   other_availability_zones:
@@ -22,5 +22,7 @@ network-properties:
     name: Availability Sets
 resource-config:
   harbor-app:
+    additional_vm_extensions:
+      - harbor-lb-security-groups
     elb_names:
     - ((environment_name))-harbor-web-lb

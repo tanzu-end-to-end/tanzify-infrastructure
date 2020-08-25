@@ -3,6 +3,17 @@ locals {
   ops_manager_image_uri = "https://opsmanager${var.image-location}.blob.core.windows.net/images/ops-manager-${var.opsman_version}-build.${var.opsman-build}.vhd"
 }
 
+
+data "azurerm_public_ip" "ops_manager_public_ip" {
+  name                = "${var.environment_name}-ops-manager-public-ip"
+  resource_group_name = var.resource_group_name
+}
+
+data "azurerm_network_security_group" "ops_manager_security_group" {
+  name                = var.ops_manager_security_group_name
+  resource_group_name = var.resource_group_name
+}
+
 resource "azurerm_storage_blob" "ops_manager_image" {
   name = "opsman.vhd"
   //resource_group_name    = azurerm_resource_group.platform.name
@@ -23,15 +34,6 @@ resource "azurerm_image" "ops_manager_image" {
     blob_uri = azurerm_storage_blob.ops_manager_image.url
     size_gb  = 150
   }
-}
-
-data "azurerm_network_security_group" "ops_manager_security_group" {
-  name                = var.ops_manager_security_group_name
-  resource_group_name = var.resource_group_name
-}
-data "azurerm_public_ip" "ops_manager_public_ip" {
-  name                = "${var.environment_name}-ops-manager-public-ip"
-  resource_group_name = var.resource_group_name
 }
 
 resource "azurerm_network_interface" "ops_manager_nic" {
@@ -86,5 +88,10 @@ resource "azurerm_virtual_machine" "ops_manager_vm" {
       key_data = var.ops_manager_ssh_public_key
     }
   }
+
+  tags = merge(
+  var.tags,
+  { name = "${var.environment_name}-ops-manager-vm" },
+  )
 }
 

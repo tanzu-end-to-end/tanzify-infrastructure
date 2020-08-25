@@ -46,6 +46,12 @@ variable ops_manager_ssh_private_key {
   type = string
 }
 
+variable "tags" {
+  default = {}
+  type = map(string)
+  description = "Tags to apply to resources"
+}
+
 variable "ops_manager_storage_account_name" {}
 variable "ops_manager_storage_container_name" {}
 variable "ops_manager_dns" {}

@@ -18,11 +18,16 @@ variable "tile_configuration_values" {
 }
 
 variable "map_extratile_configuration" {
-  description = "extra tile configs values to merge"
+  description = "extra tile configs values to merge into tile_configuration_values"
   default     = {}
   type        = map(string)
 }
 
+variable "vm_extensions_configuration_in_yml" {
+  description = "vm-extension config if any as specified here: https://github.com/pivotal-cf/om/blob/main/docs/create-vm-extension/README.md in yml format "
+  default     = ""
+  type = string
+}
 variable "tile_slug" {
 
 }

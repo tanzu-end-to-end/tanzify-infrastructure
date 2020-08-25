@@ -18,7 +18,7 @@ if [ -f "/home/ubuntu/vm_extensions.txt" ]; then
     for f in vm-extension*
     do
         echo "Applying VM extension $f"
-        om create-vm-extension --config $f
+        om -k create-vm-extension --config $f
     done
   fi
 fi
