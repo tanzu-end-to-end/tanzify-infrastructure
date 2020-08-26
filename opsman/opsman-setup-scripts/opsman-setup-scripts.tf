@@ -10,9 +10,9 @@ resource "random_string" "opsman_password" {
 
 resource "null_resource" "setup_opsman" {
 
-  provisioner "local-exec" {
+  /*provisioner "local-exec" {
     command = "sleep 60"
-  }
+  }*/
 
   provisioner "file" {
     source      = "${path.module}/scripts/"
