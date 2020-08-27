@@ -3,7 +3,8 @@ provider "acme" {
 }
 
 locals {
-  base_domain = "${var.environment_name}.${data.google_dns_managed_zone.hosted_zone.dns_name}"
+  domain_name = trimsuffix(data.google_dns_managed_zone.hosted_zone.dns_name, ".")
+  base_domain = "${var.environment_name}.${local.domain_name}"
 }
 
 #Lookup the hosted zone in Azure for the domain

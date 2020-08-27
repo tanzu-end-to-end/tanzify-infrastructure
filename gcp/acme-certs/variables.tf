@@ -15,7 +15,7 @@ variable "environment_name" {
 }
 
 variable "hosted_zone" {
-  description = "Google Cloud DNS Zone Name that has the root domain registered"
+  description = "The name of the Google Cloud DNS zone that managed the domain specified for dns_suffix"
   type        = string
 }
 
