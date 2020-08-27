@@ -23,6 +23,7 @@ variable "hosted_zone" {
 variable "subject_alternative_names" {
   type = list
   description = "SANs to support. Put your wildcard and subdomains here."
+  default = ["opsmanager", "*.apps", "*.sys", "*.uaa.sys", "*.login.sys", "*.pks", "harbor"]
 }
 
 variable "acme_server_url" {
