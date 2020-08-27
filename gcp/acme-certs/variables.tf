@@ -9,12 +9,7 @@ variable "service_account_key" {
 variable "project" {
 
 }
-variable "secret_key" {
 
-}
-variable "access_key" {
-
-}
 variable "environment_name" {
   type = string
 }

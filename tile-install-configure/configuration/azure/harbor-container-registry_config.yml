@@ -13,7 +13,7 @@ product-properties:
       secret: ((harbor_admin_password))
 network-properties:
   network:
-    name: management
+    name: services
   singleton_availability_zone:
     name: Availability Sets
 resource-config:
