@@ -33,6 +33,7 @@ resource "acme_certificate" "certificate" {
     config = {
       GCE_PROJECT = var.project
       GCE_PROPAGATION_TIMEOUT = "360"
+      GCE_SERVICE_ACCOUNT = var.service_account_key
     }
   }
 }
