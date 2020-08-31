@@ -37,25 +37,26 @@ resource "null_resource" "configure_and_apply_director" {
 //  }
 
   connection {
-    host        = "${var.ops_manager_dns}"
+    host        = var.ops_manager_dns
     user        = "ubuntu"
-    private_key = "${var.ops_manager_ssh_private_key }"
+    private_key = var.ops_manager_ssh_private_key
   }
 }
 
 resource "null_resource" "cleanup_opsman" {
 
+  depends_on = [null_resource.configure_and_apply_director]
+  
   provisioner "remote-exec" {
     when = "destroy"
-
     inline = ["wrap destroy_opsman"]
   }
 
   connection {
-    host        = "${var.ops_manager_dns}"
+    host        = var.ops_manager_dns
     user        = "ubuntu"
-    private_key = "${var.ops_manager_ssh_private_key }"
+    private_key = var.ops_manager_ssh_private_key
   }
 
-  depends_on = ["null_resource.configure_and_apply_director"]
+
 }
