@@ -3,7 +3,7 @@ provider "acme" {
 }
 
 locals {
-  domain_name = trimsuffix(data.google_dns_managed_zone.hosted_zone.dns_name, ".")
+  domain_name = trimsuffix(data.google_dns_managed_zone.hosted_zone.dns_name, ".") // lestecrypt does not like the dot at the end.
   base_domain = "${var.environment_name}.${local.domain_name}"
 }
 

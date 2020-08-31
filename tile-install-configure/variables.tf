@@ -11,6 +11,7 @@ variable "ops_manager_dns" {
 
 variable "iaas" {
   description = "which cloud? (aws/azure/gcp)"
+  type = string
 }
 
 variable "tile_configuration_values" {
@@ -29,10 +30,11 @@ variable "vm_extensions_configuration_in_yml" {
   type = string
 }
 variable "tile_slug" {
+  type = string
 
 }
 variable "tile_version" {
-
+  type = string
 }
 variable "glob" {
   description = "The glob of the file to download from Pivotal Network"

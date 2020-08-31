@@ -1,0 +1,24 @@
+product-name: p-redis
+product-properties:
+  .properties.syslog_selector:
+    value: 'No'
+  .properties.small_plan_selector.active.az_multi_select:
+    value:
+    - ((availability_zones.0))
+  .properties.medium_plan_selector.active.az_multi_select:
+    value:
+    - ((availability_zones.0))
+  .properties.large_plan_selector.active.az_multi_select:
+    value:
+    - ((availability_zones.0))
+network-properties:
+  network:
+    name: pas
+  service_network:
+    name: services
+  other_availability_zones:
+  - name: ((availability_zones.0))
+  - name: ((availability_zones.1))
+  - name: ((availability_zones.2))
+  singleton_availability_zone:
+    name: ((availability_zones.0))

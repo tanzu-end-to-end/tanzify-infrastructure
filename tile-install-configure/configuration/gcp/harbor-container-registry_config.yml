@@ -13,12 +13,16 @@ product-properties:
       secret: ((harbor_admin_password))
 network-properties:
   network:
+    name: pks
+  service_network:
     name: services
+  other_availability_zones:
+    - name: ((availability_zones.0))
+    - name: ((availability_zones.1))
+    - name: ((availability_zones.2))
   singleton_availability_zone:
-    name: Availability Sets
+    name: ((availability_zones.0))
 resource-config:
   harbor-app:
-    additional_vm_extensions:
-    - harbor-lb-security-groups
     elb_names:
     - ((harbor_web_lb_name))

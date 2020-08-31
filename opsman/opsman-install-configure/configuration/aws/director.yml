@@ -140,3 +140,8 @@ vmextensions-configuration:
     security_groups:
     - ((pks_api_lb_security_group_id))
     - ((platform_vms_security_group_id))
+- name: harbor-lb-security-groups
+  cloud_properties:
+    security_groups:
+    - ((harbor_lb_security_group_id))
+    - ((platform_vms_security_group_id))
