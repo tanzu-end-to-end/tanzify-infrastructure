@@ -28,6 +28,10 @@ variable "opsman_configuration_values" {
 
 }
 
+variable "map_extra_opsman_configuration_values" {
+ type = map(string)
+  default = {}
+}
 
 
 

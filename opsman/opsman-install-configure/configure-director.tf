@@ -17,7 +17,7 @@ resource "null_resource" "configure_and_apply_director" {
 
   // copy ops file with values
   provisioner "file" {
-    content     = "${var.opsman_configuration_values}"
+    content     = jsonencode(merge(jsondecode(var.opsman_configuration_values), var.map_extra_opsman_configuration_values))
     destination = "~/config/director-config-vars.yml"
   }
 
