@@ -43,10 +43,11 @@ resource "null_resource" "configure_and_apply_director" {
   }
 }
 
+/* THis fails with Terraform .12.8+. Need to uncomment when this is fixed. Related issue: https://github.com/hashicorp/terraform/issues/23675
 resource "null_resource" "cleanup_opsman" {
 
   depends_on = [null_resource.configure_and_apply_director]
-  
+
   provisioner "remote-exec" {
     when = "destroy"
     inline = ["wrap destroy_opsman"]
@@ -59,4 +60,4 @@ resource "null_resource" "cleanup_opsman" {
   }
 
 
-}
+}*/
