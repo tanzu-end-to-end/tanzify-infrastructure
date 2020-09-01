@@ -27,7 +27,7 @@ resource "null_resource" "configure_tas4vms" {
     inline = ["wrap configure_tile_with_vars ~/config/srt.yml ~/config/srt-config-vars.yml"]
   }
   provisioner "remote-exec" {
-    inline = ["wrap apply_changes"]
+    inline = ["wrap apply_changes cf"]
   }
 
   connection {

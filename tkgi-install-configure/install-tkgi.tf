@@ -27,7 +27,7 @@ resource "null_resource" "configure_tkgi" {
   }
 
   provisioner "remote-exec" {
-    inline = ["wrap apply_changes"]
+    inline = ["wrap apply_changes pivotal-container-service"]
   }
 
 //  provisioner "remote-exec" {
