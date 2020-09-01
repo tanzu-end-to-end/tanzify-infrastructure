@@ -1,5 +1,5 @@
 locals {
-  opsman_image_url = "https://storage.googleapis.com/ops-manager-us/pcf-gcp-${var.opsman_version}-build.${var.build}.tar.gz"
+  opsman_image_url = "https://storage.googleapis.com/ops-manager-us/pcf-gcp-${var.opsman_version}-build.${var.opsman-build}.tar.gz"
 }
 
 resource "google_compute_address" "ops_manager" {
@@ -37,7 +37,7 @@ resource "google_compute_image" "ops_manager_image" {
   }
 
   network_interface {
-    subnetwork = management_subnet_name
+    subnetwork = var.management_subnet_name
 
     access_config {
       nat_ip = google_compute_address.ops_manager.address

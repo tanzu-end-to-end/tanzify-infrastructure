@@ -3,13 +3,17 @@
 
 variable "region" {
 }
-variable "secret_key" {
+
+variable "service_account_key" {
 
 }
-variable "access_key" {
+variable "project" {
 
 }
-variable "environment_name" {}
+
+variable "environment_name" {
+  type = string
+}
 
 variable "opsman-build" {
   type = string
@@ -26,9 +30,7 @@ variable "availability_zones" {
 variable ops_manager_ssh_public_key {
   type = string
 }
-variable ops_manager_ssh_private_key {
-  type = string
-}
+
 
 variable "management_subnet_name" {}
 
