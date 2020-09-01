@@ -24,11 +24,6 @@ variable "map_extratile_configuration" {
   type        = map(string)
 }
 
-variable "vm_extensions_configuration_in_yml" {
-  description = "vm-extension config if any as specified here: https://github.com/pivotal-cf/om/blob/main/docs/create-vm-extension/README.md in yml format "
-  default     = ""
-  type = string
-}
 variable "tile_slug" {
   type = string
 
