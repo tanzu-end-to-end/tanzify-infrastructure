@@ -27,13 +27,18 @@ variable "availability_zones" {
   type        = list
 }
 
-variable ops_manager_ssh_public_key {
+variable "ops_manager_ssh_public_key" {
   type = string
 }
 
+variable "ops_manager_ssh_private_key" {
+  type = string
+}
 
+variable "ops_manager_dns" {}
 variable "management_subnet_name" {}
 
+variable "ops_manager_public_ip" {}
 
 variable "ops_manager_instance_type" {
   default = "n1-standard-2"
@@ -44,6 +49,7 @@ variable "ops_man_image_creation_timeout" {
   type    = string
   default = "10m"
 }
+
 
 
 

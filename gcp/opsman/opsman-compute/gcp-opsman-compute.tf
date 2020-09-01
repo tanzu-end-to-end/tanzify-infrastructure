@@ -2,9 +2,6 @@ locals {
   opsman_image_url = "https://storage.googleapis.com/ops-manager-us/pcf-gcp-${var.opsman_version}-build.${var.opsman-build}.tar.gz"
 }
 
-resource "google_compute_address" "ops_manager" {
-  name = "${var.environment_name}-ops-manager-ip"
-}
 
 resource "google_compute_image" "ops_manager_image" {
   name = "${var.environment_name}-ops-manager-image"
@@ -18,7 +15,11 @@ resource "google_compute_image" "ops_manager_image" {
   }
 }
 
-  resource "google_compute_instance" "ops_manager" {
+data "google_service_account" "ops_manager" {
+ account_id   = "${var.environment_name}-ops-manager"
+}
+
+resource "google_compute_instance" "ops_manager" {
   name         = "${var.environment_name}-ops-manager"
   machine_type = var.ops_manager_instance_type
   zone         = element(var.availability_zones, 1)
@@ -40,12 +41,12 @@ resource "google_compute_image" "ops_manager_image" {
     subnetwork = var.management_subnet_name
 
     access_config {
-      nat_ip = google_compute_address.ops_manager.address
+      nat_ip = var.ops_manager_public_ip
     }
   }
 
   service_account {
-    email  = google_service_account.ops_manager.email
+    email  = data.google_service_account.ops_manager.email
     scopes = ["cloud-platform"]
   }
 
