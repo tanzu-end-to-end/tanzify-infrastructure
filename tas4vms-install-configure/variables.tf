@@ -22,7 +22,7 @@ variable "tas4vms_tile_version" {
   default = "2.9.9"
 }
 variable "glob" {
-  description = "The glob of the file to download from Pivotal Network"
+  description = "The glob of the file to download from Pivotal Network. srt for small footprint. cf otherwise"
   default     = "srt"
 }
 

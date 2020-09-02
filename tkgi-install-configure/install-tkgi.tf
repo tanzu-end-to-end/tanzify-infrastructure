@@ -4,7 +4,7 @@ locals {
 }
 
 
-resource "null_resource" "configure_tkgi" {
+resource "null_resource" "install_tkgi" {
 
   // copy config file
   provisioner "file" {

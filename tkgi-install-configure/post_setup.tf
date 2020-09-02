@@ -3,17 +3,20 @@ resource "random_string" "pks_password" {
   special = false
 }
 
-data "template_file" "setup_pks" {
+data "template_file" "setup_tkgi" {
   template = "${chomp(file("${path.module}/scripts/setup_pks.sh"))}"
 
   vars = {
-    api_endpoint = "pks.novant-demo.azure.pcf-arau.pw"
+    api_endpoint = var.tkgi_api_dns_domain
     pks_password = random_string.pks_password.result
     pks_version  = var.tkgi_tile_version
+    pks_username = var.tkgi_username
   }
 }
 
-resource "null_resource" "configure_tkgi" {
+resource "null_resource" "setup_tkgi" {
+
+  depends_on = [data.template_file.setup_tkgi, null_resource.install_tkgi]
 
   // copy config file
   provisioner "file" {
@@ -25,9 +28,24 @@ resource "null_resource" "configure_tkgi" {
   provisioner "remote-exec" {
     inline = ["chmod +x ~/setup_pks.sh"]
   }
+  // copy config file
+  provisioner "file" {
+    source      = "${path.module}/scripts/create_cluster.sh"
+    destination = "~/create_cluster.sh"
+  }
+
+
+  provisioner "remote-exec" {
+    inline = ["chmod +x ~/create_cluster.sh"]
+  }
+
 
   provisioner "remote-exec" {
     inline = ["wrap bash ~/setup_pks.sh"]
+  }
+
+  provisioner "remote-exec" {
+    inline = ["wrap bash ~/create_cluster.sh"]
   }
 
 

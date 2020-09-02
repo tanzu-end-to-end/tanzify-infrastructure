@@ -13,9 +13,9 @@ if [ ! -f $HOME/.uaa ]; then
 
   uaac token client get admin -s $admin_secret
 
-  uaac user add tanzify --emails tanzify@localhost -p ${pks_password}
+  uaac user add ${pks_username} --emails ${pks_username}@localhost -p ${pks_password}
 
-  uaac member add pks.clusters.admin tanzify
+  uaac member add pks.clusters.admin ${pks_username}
 
   touch $HOME/.uaa
 fi
@@ -29,7 +29,7 @@ sudo mv $HOME/pks-download/pks-linux-amd64* /usr/local/bin/pks
 sudo chmod +x /usr/local/bin/pks
 
 cat << EOF > $HOME/pks-login.sh
-pks login -a https://${api_endpoint}:9021 -u tanzify -p ${pks_password} -k
+pks login -a https://${api_endpoint}:9021 -u ${pks_username} -p ${pks_password} -k
 EOF
 
 chmod +x $HOME/pks-login.sh

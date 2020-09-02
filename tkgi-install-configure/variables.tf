@@ -31,6 +31,14 @@ variable "om_product" {
   default     = ""
 }
 
+variable "tkgi_api_dns_domain" {
+  description = "TKGI API endpoint"
+}
+
+variable "tkgi_username" {
+  description = "TKGI username to create"
+  default = "tanzu"
+}
 
 
 
