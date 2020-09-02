@@ -8,6 +8,9 @@ product-properties:
         ((ssl_certificate))
       private_key_pem: |
         ((ssl_private_key))
+  .properties.server_cert_ca:
+    value: |
+      ((tls_ca_cert))
   .properties.admin_password:
     value:
       secret: ((harbor_admin_password))
