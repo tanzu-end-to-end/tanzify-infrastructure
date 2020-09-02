@@ -3,5 +3,5 @@ output "harbor_domain" {
 }
 
 output "harbor_web_lb_name" {
-  value = google_compute_address.harbor_lb.name
+  value = "tcp:${google_compute_address.harbor_lb.name}"
 }
