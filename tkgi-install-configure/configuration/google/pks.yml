@@ -50,6 +50,7 @@ product-properties:
     value: not_provided
 resource-config:
   pivotal-container-service:
+    internet_connected: false
     elb_names:
     - tcp:((pks_api_target_pool_name))
 errand-config:

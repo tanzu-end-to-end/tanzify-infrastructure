@@ -14,9 +14,18 @@ data "template_file" "setup_tkgi" {
   }
 }
 
+data "template_file" "create_cluster" {
+  template = "${chomp(file("${path.module}/scripts/create_cluster.sh"))}"
+
+  vars = {
+    cluster_name = var.cluster_name
+    api_endpoint = var.tkgi_api_dns_domain
+  }
+}
+
 resource "null_resource" "setup_tkgi" {
 
-  depends_on = [data.template_file.setup_tkgi, null_resource.install_tkgi]
+  depends_on = [data.template_file.setup_tkgi, data.template_file.create_cluster, null_resource.install_tkgi]
 
   // copy config file
   provisioner "file" {

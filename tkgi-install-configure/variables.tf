@@ -40,5 +40,10 @@ variable "tkgi_username" {
   default = "tanzu"
 }
 
+variable "cluster_name" {
+  description = "Name of the cluster to create"
+  default = "demo"
+}
+
 
 

@@ -1,6 +1,9 @@
 
 resource "null_resource" "configure_and_apply_director" {
 
+  triggers = {
+      id = null_resource.configure_authentication.id
+  }
   depends_on = [null_resource.configure_authentication]
 
   // copy config file
@@ -31,6 +34,10 @@ resource "null_resource" "configure_and_apply_director" {
     inline = ["wrap configure_director"]
   }
 
+  provisioner "remote-exec" {
+    when = "destroy"
+    inline = ["wrap destroy_opsman ${self.triggers.id}"]
+  }
 
   //  provisioner "remote-exec" {
 //    inline = ["wrap post_install_opsman ${var.bosh_director_ip}"]
@@ -43,21 +50,3 @@ resource "null_resource" "configure_and_apply_director" {
   }
 }
 
-/* THis fails with Terraform 0.12.8+. Need to uncomment when this is fixed. Related issue: https://github.com/hashicorp/terraform/issues/23675
-resource "null_resource" "cleanup_opsman" {
-
-  depends_on = [null_resource.configure_and_apply_director]
-
-  provisioner "remote-exec" {
-    when = "destroy"
-    inline = ["wrap destroy_opsman"]
-  }
-
-  connection {
-    host        = var.ops_manager_dns
-    user        = "ubuntu"
-    private_key = var.ops_manager_ssh_private_key
-  }
-
-
-}*/
