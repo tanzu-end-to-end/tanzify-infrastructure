@@ -28,7 +28,7 @@ om -k configure-opsman -c /home/ubuntu/config/ops-manager.yml --vars-file /home/
 
 
 echo 'Configuring BOSH Director....'
-om -k configure-director -c /home/ubuntu/config/director.yml --vars-file /home/ubuntu/config/director-config-vars.yml
+om -k configure-director -c /home/ubuntu/config/director.yml --ops-file /home/ubuntu/config/director-config-ops.yml --vars-file /home/ubuntu/config/director-config-vars.yml
 
 
 

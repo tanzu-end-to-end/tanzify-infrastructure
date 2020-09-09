@@ -6,19 +6,25 @@ resource "null_resource" "configure_and_apply_director" {
   }
   depends_on = [null_resource.configure_authentication]
 
-  // copy config file
-  provisioner "file" {
-    source      = "${path.module}/configuration/${var.iaas}/director.yml"
-    destination = "~/config/director.yml"
-  }
-
-  // copy config file
+  // copy opsmanager config file
   provisioner "file" {
     source      = "${path.module}/configuration/${var.iaas}/ops-manager.yml"
     destination = "~/config/ops-manager.yml"
   }
 
-  // copy ops file with values
+  // copy director config file
+  provisioner "file" {
+    source      = "${path.module}/configuration/${var.iaas}/director.yml"
+    destination = "~/config/director.yml"
+  }
+
+  // copy director ops file with values
+  provisioner "file" {
+    source     = "${path.module}/configuration/director/${var.iaas}/*.yml"
+    destination = "~/config/director-config-ops.yml"
+  }
+
+  // copy director vars file with values
   provisioner "file" {
     content     = jsonencode(merge(jsondecode(var.opsman_configuration_values), var.map_extra_opsman_configuration_values))
     destination = "~/config/director-config-vars.yml"
