@@ -21,7 +21,7 @@ variable "ssl_private_key" {
 variable "iaas" {}
 
 variable "vm_extensions" {
-  type = "list"
+  type = list
   default = []
 }
 variable "opsman_configuration_values" {
