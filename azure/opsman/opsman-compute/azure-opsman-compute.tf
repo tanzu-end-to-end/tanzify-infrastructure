@@ -1,6 +1,6 @@
 
 locals {
-  ops_manager_image_uri = "https://opsmanager${var.image-location}.blob.core.windows.net/images/ops-manager-${var.opsman_version}-build.${var.opsman-build}.vhd"
+  ops_manager_image_uri = "https://opsmanager${var.image_location}.blob.core.windows.net/images/ops-manager-${var.opsman_version}-build.${var.opsman_build}.vhd"
 }
 
 

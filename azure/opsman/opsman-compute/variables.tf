@@ -1,7 +1,7 @@
 # ==================== Variables
 
 # This is where the Opsman local images are stored. Possible values are westus, eastus, westeurope, southeastasia
-variable "image-location" {
+variable "image_location" {
   type = string
   default = "eastus"
 }
@@ -32,7 +32,7 @@ variable "tenant_id" {
 }
 variable "environment_name" {}
 
-variable "opsman-build" {
+variable "opsman_build" {
   type = string
 }
 variable "opsman_version" {

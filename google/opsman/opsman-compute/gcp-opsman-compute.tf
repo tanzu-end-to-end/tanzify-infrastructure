@@ -1,5 +1,5 @@
 locals {
-  opsman_image_url = "https://storage.googleapis.com/ops-manager-us/pcf-gcp-${var.opsman_version}-build.${var.opsman-build}.tar.gz"
+  opsman_image_url = "https://storage.googleapis.com/ops-manager-us/pcf-gcp-${var.opsman_version}-build.${var.opsman_build}.tar.gz"
 }
 
 

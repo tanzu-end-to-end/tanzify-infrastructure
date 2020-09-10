@@ -11,7 +11,7 @@ variable "access_key" {
 }
 variable "environment_name" {}
 
-variable "opsman-build" {
+variable "opsman_build" {
   type = string
 }
 variable "opsman_version" {

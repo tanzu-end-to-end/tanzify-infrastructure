@@ -15,7 +15,7 @@ variable "environment_name" {
   type = string
 }
 
-variable "opsman-build" {
+variable "opsman_build" {
   type = string
 }
 variable "opsman_version" {
