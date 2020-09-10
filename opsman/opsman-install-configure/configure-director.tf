@@ -4,6 +4,7 @@ resource "null_resource" "configure_and_apply_director" {
   triggers = {
       id = null_resource.configure_authentication.id
   }
+
   depends_on = [null_resource.configure_authentication]
 
   // copy opsmanager config file
@@ -18,13 +19,13 @@ resource "null_resource" "configure_and_apply_director" {
     destination = "~/config/director.yml"
   }
 
-  // copy director ops file with values
+  // copy director ops file
   provisioner "file" {
-    source     = "${path.module}/configuration/director/${var.iaas}/*.yml"
+    content     = "${file("${path.module}/configuration/${var.iaas}/director/pas.yml")}${file("${path.module}/configuration/${var.iaas}/director/pks.yml")}"
     destination = "~/config/director-config-ops.yml"
   }
 
-  // copy director vars file with values
+  // copy director vars file that has the values
   provisioner "file" {
     content     = jsonencode(merge(jsondecode(var.opsman_configuration_values), var.map_extra_opsman_configuration_values))
     destination = "~/config/director-config-vars.yml"
