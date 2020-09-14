@@ -1,9 +1,11 @@
 
-
+locals {
+  product_name_string = join(" " , var.product-names)
+}
 resource "null_resource" "configure_tile" {
 
   provisioner "remote-exec" {
-    inline = ["wrap apply_changes ${var.product-name}"]
+    inline = ["wrap apply_changes ${local.product_name_string}"]
   }
 
 

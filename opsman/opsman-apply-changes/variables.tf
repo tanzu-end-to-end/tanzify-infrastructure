@@ -8,10 +8,10 @@ variable "ops_manager_dns" {
   type = string
 }
 
-variable "product-name" {
-  default = ""
-  type = string
-  description = "The product name to apply if any. If empty it will apply all changes"
+variable "product-names" {
+  default = [""]
+  type = list(string)
+  description = "The product names to apply if any. If empty it will apply all changes"
 }
 
 
