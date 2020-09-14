@@ -2,7 +2,9 @@
 
 set -e
 
-if [ ! -f $HOME/.uaa ]; then
+source ~/.om_profile
+
+if [ ! -f $HOME/.uaac.yml ]; then
   sudo apt install -y build-essential ruby ruby-dev
 
   sudo gem install cf-uaac
@@ -17,11 +19,10 @@ if [ ! -f $HOME/.uaa ]; then
 
   uaac member add pks.clusters.admin ${pks_username}
 
-  touch $HOME/.uaa
 fi
 
 
-mkdir $HOME/pks-download
+mkdir -p $HOME/pks-download
 
 echo "Downloading pks CLI from pivnet"
 pivnet download-product-files -p pivotal-container-service -r ${pks_version} -g "pks-linux-amd64*" -d $HOME/pks-download
@@ -41,4 +42,4 @@ cat << EOF > $HOME/pks-login.sh
 pks login -a https://${api_endpoint}:9021 -u ${pks_username} -p ${pks_password} -k
 EOF
 
-chmod +x $HOME/pks-login.sh
+sudo chmod +x $HOME/pks-login.sh

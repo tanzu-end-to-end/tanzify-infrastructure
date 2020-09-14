@@ -23,34 +23,33 @@ data "template_file" "create_cluster" {
 
   vars = {
     cluster_name = var.cluster_name
-    cluster_api_endpoint = "${var.cluster_name}.${local.cluster_domain_name_prefix}}"
+    cluster_api_endpoint = "${var.cluster_name}.${local.cluster_domain_name_prefix}"
     plan = var.plan_name
   }
 }
 
 resource "null_resource" "setup_tkgi" {
 
-  depends_on = [data.template_file.setup_tkgi, data.template_file.create_cluster, null_resource.install_tkgi]
 
   // copy config file
   provisioner "file" {
-    source      = "${path.module}/scripts/setup_pks.sh"
+    content      = data.template_file.setup_tkgi.rendered
     destination = "~/setup_pks.sh"
   }
 
 
   provisioner "remote-exec" {
-    inline = ["chmod +x ~/setup_pks.sh"]
+    inline = ["sudo chmod +x ~/setup_pks.sh"]
   }
   // copy config file
   provisioner "file" {
-    source      = "${path.module}/scripts/create_cluster.sh"
+    content      = data.template_file.create_cluster.rendered
     destination = "~/create_cluster.sh"
   }
 
 
   provisioner "remote-exec" {
-    inline = ["chmod +x ~/create_cluster.sh"]
+    inline = ["sudo chmod +x ~/create_cluster.sh"]
   }
 
 

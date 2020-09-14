@@ -1,4 +1,11 @@
+#!/bin/bash
+
+set -e
+
+source ~/.om_profile
+
 $HOME/pks-login.sh
+
 echo "Creating small plan Cluster ${cluster_name} using API endpoint ${cluster_api_endpoint} ...."
 pks create-cluster ${cluster_name} -e ${cluster_api_endpoint} -p ${plan} --wait --non-interactive
 echo "********** Creating Cluster ${cluster_name} with plan ${plan} complete. API endpoint is ${cluster_api_endpoint}  ***********"
