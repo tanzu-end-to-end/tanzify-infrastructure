@@ -24,6 +24,7 @@ data "template_file" "create_cluster" {
   vars = {
     cluster_name = var.cluster_name
     cluster_api_endpoint = "${var.cluster_name}.${local.cluster_domain_name_prefix}}"
+    plan = var.plan_name
   }
 }
 

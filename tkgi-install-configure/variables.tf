@@ -44,5 +44,10 @@ variable "cluster_name" {
   description = "Name of the cluster to create"
 }
 
+variable "plan_name" {
+  description = "Name of plan"
+  default = "small"
+}
+
 
 
