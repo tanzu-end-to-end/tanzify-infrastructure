@@ -7,6 +7,9 @@
         - ((pks_api_lb_security_group_id))
         - ((platform_vms_security_group_id))
 - type: replace
+  path: /resource-config/pivotal-container-service?/internet_connected?
+  value: false
+- type: replace
   path: /networks-configuration?/networks?/-
   value:
     name: pks

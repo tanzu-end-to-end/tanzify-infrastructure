@@ -1,4 +1,10 @@
 #!/bin/bash
+####################################
+##
+## This bash script is run on the OpsManager node itself to configure Opsman and the director
+## Note: The configure_authentication shell script is required to be run before this script runs
+##
+######################
 
 set -e
 ## Setup OM environment vars

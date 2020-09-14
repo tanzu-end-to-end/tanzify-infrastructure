@@ -19,7 +19,7 @@ resource "null_resource" "configure_and_apply_director" {
 
   // copy director ops file
   provisioner "file" {
-    content     = "${file("${path.module}/configuration/${var.iaas}/director/pas.yml")}${file("${path.module}/configuration/${var.iaas}/director/pks.yml")}"
+    content     = "${file("${path.module}/configuration/${var.iaas}/director/pas.yml")}${file("${path.module}/configuration/${var.iaas}/director/pks.yml")}${file("${path.module}/configuration/${var.iaas}/director/harbor.yml")}"
     destination = "~/config/director-config-ops.yml"
 
   }
@@ -48,9 +48,9 @@ resource "null_resource" "configure_and_apply_director" {
 //    inline = ["wrap destroy_opsman"]
 //  }
 
-  //  provisioner "remote-exec" {
-  //    inline = ["wrap post_install_opsman ${var.bosh_director_ip}"]
-  //  }
+    provisioner "remote-exec" {
+      inline = ["wrap post_install_opsman"]
+    }
 
   connection {
     host        = var.ops_manager_dns

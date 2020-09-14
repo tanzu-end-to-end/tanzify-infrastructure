@@ -42,7 +42,6 @@ variable "tkgi_username" {
 
 variable "cluster_name" {
   description = "Name of the cluster to create"
-  default = "demo"
 }
 
 

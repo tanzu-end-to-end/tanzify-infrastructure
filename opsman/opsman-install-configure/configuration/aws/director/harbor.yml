@@ -1,0 +1,8 @@
+- type: replace
+  path: /vmextensions-configuration?/-
+  value:
+    name: harbor-lb-security-groups
+    cloud_properties:
+      security_groups:
+        - ((harbor_lb_security_group_id))
+        - ((platform_vms_security_group_id))

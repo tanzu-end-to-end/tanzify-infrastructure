@@ -1,3 +1,7 @@
+
+locals {
+  cluster_domain_name_prefix = trimprefix(var.tkgi_api_dns_domain, "api.")
+}
 resource "random_string" "pks_password" {
   length  = 8
   special = false
@@ -19,7 +23,7 @@ data "template_file" "create_cluster" {
 
   vars = {
     cluster_name = var.cluster_name
-    api_endpoint = var.tkgi_api_dns_domain
+    cluster_api_endpoint = "${var.cluster_name}.${local.cluster_domain_name_prefix}}"
   }
 }
 
