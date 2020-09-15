@@ -16,7 +16,7 @@ product-properties:
       secret: ((harbor_admin_password))
 network-properties:
   network:
-    name: pks
+    name: services
   service_network:
     name: services
   singleton_availability_zone:

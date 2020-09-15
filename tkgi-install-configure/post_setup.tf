@@ -52,7 +52,9 @@ resource "null_resource" "setup_tkgi" {
     inline = ["sudo chmod +x ~/create_cluster.sh"]
   }
 
-
+  provisioner "remote-exec" {
+    inline = ["sudo rm .uaac.yml"]
+  }
   provisioner "remote-exec" {
     inline = ["wrap bash ~/setup_pks.sh"]
   }
