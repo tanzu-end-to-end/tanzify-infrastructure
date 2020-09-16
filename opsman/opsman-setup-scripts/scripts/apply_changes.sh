@@ -2,9 +2,12 @@
 
 set -e
 
+product_names=$1
+
 source ~/.om_profile
 
-if [ -z "$product_name" ]; then
+
+if [ -z "$product_names" ]; then
   echo "Applying changes"
   om -k apply-changes
 else
