@@ -45,7 +45,7 @@ variable "tags" {
 }
 
 variable "ops_manager_public_ip" {
-  default = ""
+
 }
 
 
