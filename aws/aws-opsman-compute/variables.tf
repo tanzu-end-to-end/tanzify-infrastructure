@@ -26,7 +26,9 @@ variable ops_manager_ssh_private_key {
 }
 variable "ops_manager_security_group_id" {}
 
-variable "public_subnet_ids" {}
+variable "public_subnet_ids" {
+  type = list(string)
+}
 variable "ops_manager_iam_instance_profile_name" {}
 
 variable "ops_manager_dns" {
