@@ -1,7 +1,3 @@
-data "aws_subnet" "public_subnets" {
-
-
-}
 
 resource "aws_lb" "harbor" {
   name                             = "${var.environment_name}-harbor"
