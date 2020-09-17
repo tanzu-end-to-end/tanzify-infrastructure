@@ -29,7 +29,8 @@ variable "ops_manager_security_group_id" {}
 variable "public_subnet_ids" {}
 variable "ops_manager_iam_instance_profile_name" {}
 
-
+variable "ops_manager_dns" {
+}
 variable "ops_manager_instance_type" {
   default = "r4.large"
   type    = string
