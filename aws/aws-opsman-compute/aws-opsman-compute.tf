@@ -26,14 +26,15 @@ resource "aws_instance" "ops_manager" {
   tags = merge(var.tags, map("Name", "${var.environment_name}-ops-manager"))
 }
 
-resource "aws_eip" "ops_manager" {
-  vpc      = true
-  instance = aws_instance.ops_manager.id
 
-  tags = merge(
-  var.tags,
-  { "Name" = "${var.environment_name}-ops-manager-eip" },
-  )
+data "aws_eip" "ops_manager" {
+  public_ip = var.ops_manager_public_ip
+}
+
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.ops_manager.id
+  allocation_id = data.aws_eip.ops_manager.id
+
 
   connection {
     host        = self.public_ip

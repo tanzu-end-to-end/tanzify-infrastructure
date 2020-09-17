@@ -44,4 +44,8 @@ variable "tags" {
   description = "Tags to apply to resources"
 }
 
+variable "ops_manager_public_ip" {
+  default = ""
+}
+
 
