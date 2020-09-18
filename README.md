@@ -21,7 +21,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 Using [best practices](https://terragrunt.gruntwork.io/docs/getting-started/quick-start/#promote-immutable-versioned-terraform-modules-across-environments) for using Terraform,
-the modules here are currently support installing the following VMware Tanzu products:
+the modules here currently support installing the following VMware Tanzu products:
 
 | Product | AWS | GCP | Azure | vSphere |
 |----|-----|-----|-----|-----|
