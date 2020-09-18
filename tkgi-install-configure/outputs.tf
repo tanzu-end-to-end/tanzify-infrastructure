@@ -1,4 +1,4 @@
-output "pks_api_password" {
+output "pks_password" {
   value = random_string.pks_password.result
 }
 

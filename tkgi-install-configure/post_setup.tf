@@ -53,7 +53,7 @@ resource "null_resource" "setup_tkgi" {
   }
 
   provisioner "remote-exec" {
-    inline = ["sudo rm .uaac.yml"]
+    inline = ["sudo rm -f .uaac.yml"]
   }
   provisioner "remote-exec" {
     inline = ["wrap bash ~/setup_pks.sh"]
