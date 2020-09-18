@@ -3,7 +3,7 @@
 # Tanzify Infrastructure
 
  Terraform Modules to help install VMware Tanzu Products. Best used with [Terragrunt](https://terragrunt.gruntwork.io/).
- For a full example of how to use this repo see https://github.com/abhinavrau/tanzify-arau-live
+ For a full example of how to use this repo see https://github.com/tanzu-end-to-end/tanzify-reference-live
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
