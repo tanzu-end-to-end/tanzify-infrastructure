@@ -1,6 +1,6 @@
 
 ![Logo of the project](images/logo.png)
-#Tanzify Infrastructure
+# Tanzify Infrastructure
 
  Terraform Modules to help install VMware Tanzu Products. Best used with [Terragrunt](https://terragrunt.gruntwork.io/).
  For a full example of how to use this repo see https://github.com/abhinavrau/tanzify-arau-live
@@ -12,7 +12,6 @@
   * [Built With](#built-with)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
 * [Acknowledgements](#acknowledgements)
@@ -47,7 +46,7 @@ It also supports installing the following Tiles.
 | Spring Cloud Gateway  |
 | SSO |
 
-*Note:* Not all versions of tiles have been tested so your mileage may vary. 
+**Note:** Not all versions of tiles have been tested, so your mileage may vary. 
 
 <!-- GETTING STARTED -->
 ## Getting Started
