@@ -30,4 +30,4 @@ resource-config:
     additional_vm_extensions:
     - harbor-lb-security-groups
     elb_names:
-    - ((harbor_web_lb_name))
+    - alb:((harbor_web_lb_name))

@@ -1,20 +1,26 @@
 # ==================== Variables
 
 variable "region" {
+  type = string
+  description = "AWS Region"
 }
 variable "secret_key" {
-
+  type = string
+description = "AWS secret key"
 }
 variable "access_key" {
+  type = string
+  description = "AWS Access Key"
 
 }
 variable "environment_name" {
   type = string
+  description = "Name of the environment. This is prefixed with the hosted_zone DNS to generate the Common Name for the TLS certificate."
 }
 
 
 variable "hosted_zone" {
-  description = "Hosted zone name (e.g. foo.example.com)"
+  description = "DNS  name (e.g. foo.example.com) that is registered with Route53"
   type        = string
 }
 
