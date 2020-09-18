@@ -66,9 +66,9 @@ and [here](https://blog.gruntwork.io/5-lessons-learned-from-writing-over-300-000
 ## Usage
 
 It's best not to use this repo directly but use Terragrunt to execute the modules. 
-The easiest way to get started is to clone the reference live repo from https://github.com/abhinavrau/tanzify-arau-live
+The easiest way to get started is to clone the reference live repo from https://github.com/tanzu-end-to-end/tanzify-reference-live
 ```
-git clone https://github.com/abhinavrau/tanzify-arau-live.git tanzify-username-live
+git clone https://github.com/tanzu-end-to-end/tanzify-reference-live.git tanzify-username-live
 ```
 
 <!-- LICENSE -->
