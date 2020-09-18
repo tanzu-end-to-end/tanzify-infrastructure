@@ -27,5 +27,7 @@ network-properties:
     name: ((availability_zones.0))
 resource-config:
   harbor-app:
+    additional_vm_extensions:
+    - harbor-lb-security-groups
     elb_names:
     - ((harbor_web_lb_name))
