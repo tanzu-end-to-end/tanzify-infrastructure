@@ -46,7 +46,7 @@ It also supports installing the following Tiles.
 | Spring Cloud Gateway  |
 | SSO |
 
-**Note:** Not all versions of tiles have been tested, so your mileage may vary. 
+**Note:** Not all versions of tiles have been tested, so your mileage may vary. Take a look the [tile-install-configure/configuration](tile-install-configure/configuration) to see supported tile configs.
 
 <!-- GETTING STARTED -->
 ## Getting Started
