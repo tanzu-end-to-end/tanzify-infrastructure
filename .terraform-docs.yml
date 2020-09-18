@@ -1,4 +1,0 @@
-formatter: markdown table
-header-from: doc.txt
-settings:
-  indent: 4

@@ -80,7 +80,7 @@ variable "ops_manager_security_group_name" {
   description = "Output from https://github.com/pivotal/paving/azure "
 }
 variable "subnet_id" {
-  description = "Output from https://github.com/pivotal/paving/aws "
+  description = "Output from https://github.com/pivotal/paving/azure "
 }
 variable "ops_manager_instance_type" {
   default = "Standard_DS2_v2"

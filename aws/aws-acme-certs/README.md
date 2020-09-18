@@ -1,5 +1,11 @@
 
+# What is this?
 Generates TLS certificates using LetsEncrypt on AWS.
+
+## How do I use this? 
+Best to use it with [Terragrunt](https://terragrunt.gruntwork.io/). 
+
+
 
 ## Requirements
 

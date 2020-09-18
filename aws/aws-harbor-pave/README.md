@@ -2,7 +2,7 @@
 Paves Network for Harbor on AWS.
 
 ## How do I use this? 
-Best to use it using [Terragrunt](https://terragrunt.gruntwork.io/). 
+Best to use it with [Terragrunt](https://terragrunt.gruntwork.io/). 
 
 
 ## Requirements
